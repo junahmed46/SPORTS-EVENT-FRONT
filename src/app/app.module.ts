@@ -14,9 +14,15 @@ import {EventsAutoPlayService} from './events/event-play-auto/events-autoplay.se
 import { EventPlayManualComponent } from './events/event-play-manual/event-play-manual.component';
 import {EventsManualPlayService} from './events/event-play-manual/events-manualplay.service';
 import {DatePipe} from '@angular/common';
+import {NavComponent} from './layout/nav/nav.component';
+import {FooterComponent} from './layout/footer/footer.component';
+import {Error404Component} from './common/error404/error-404.component';
 @NgModule({
   declarations: [
     AppComponent,
+    NavComponent,
+    FooterComponent,
+    Error404Component,
     EventsComponent,
     EventsDetailComponent,
     EventPlayAutoComponent,
@@ -24,8 +30,8 @@ import {DatePipe} from '@angular/common';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     EventsModule,
+    AppRoutingModule,
     FormsModule,
     HttpModule,
     ReactiveFormsModule,

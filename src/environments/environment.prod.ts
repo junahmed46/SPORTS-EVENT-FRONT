@@ -1,4 +1,4 @@
 export const environment = {
-  production: true,
-  api_url: 'http://mooncascadeapi.junaidahmed.online/api/v1/',
+  production: false,
+  api_url: 'http://mc-sportevent-api.junaidahmed.online/api/v1/',
 };

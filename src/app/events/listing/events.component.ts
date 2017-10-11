@@ -11,8 +11,6 @@ import {SportEvents} from '../models/sport-events.model';
 })
 
 export class EventsComponent implements OnInit {
-
-  date_format = global.date_format;
   public alerts: any = [];
   events: Array<SportEvents> = [];
   testing: Observable<any>;
