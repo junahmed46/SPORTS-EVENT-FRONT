@@ -1,0 +1,48 @@
+<main [ngClass]="'col-sm-12 ml-sm-auto col-md-12 pt-3'" role="main">
+  <div [ngClass]="'row'">
+    <div [ngClass]="'col-sm-3'">
+      <div [ngClass]="'main_heading'">
+        <h4>Event Detail ID-{{this.id}} </h4>
+        {{athelets.length}} Athlets Found
+        <hr>
+        <div *ngIf="athelets.length!=0">
+          <strong>Event Play</strong>
+          <div [ngClass]="'space'"></div>
+          <a [routerLink]="['/event/play/auto/',this.id]" [ngClass]="'btn btn-success btn-block'">Automatic</a>
+          <a [routerLink]="['/event/play/manual/',this.id]" [ngClass]="'btn btn-success btn-block'">Manual</a>
+        </div>
+
+      </div>
+    </div>
+    <div [ngClass]="'col-sm-9'" >
+      <div *ngFor="let alert of alerts">
+        <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
+      </div>
+      <div [ngClass]="'table-responsive'" >
+        <table [ngClass]="'table table-striped'"  *ngIf="athelets.length!=0">
+          <thead>
+          <tr>
+            <th width="20%">Start Name</th>
+            <th width="20%">First Name</th>
+            <th width="20%">Name</th>
+            <th width="40%">Code Identifier</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let athlet of athelets">
+            <td>{{athlet.start_number}}</td>
+            <td>{{athlet.first_name}}</td>
+            <td>{{athlet.sur_name}}</td>
+            <td>{{athlet.code_identifier}}</td>
+          </tr>
+          </tbody>
+        </table>
+        <div *ngIf="athelets.length==0">
+          <div [ngClass]="'no_data_found'">There are  no athlets in Event</div>
+          <button type="button" (click)="this.add_athlets_to_event()" [ngClass]="'btn btn-outline-primary'">Add 10 to 15 Random Ahlets</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+

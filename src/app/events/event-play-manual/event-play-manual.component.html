@@ -1,0 +1,84 @@
+<main class="col-sm-12 ml-sm-auto col-md-12 pt-3" role="main">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="main_heading">
+
+        <div class="manual_link_box">
+            <span>History</span>
+            <button class="btn btn-link" (click)="previous_step()" [disabled]="event_current_step <= 1">Previous Step</button>
+            <button class="btn btn-link" (click)="next_step()" [disabled]="event_last_fetched <= event_current_step">Next Step</button>
+          </div>
+        <div class="manual_link_box">
+          <span>Time Format</span>
+          <button class="btn btn-link" (click)="changetimeformat('time')" [disabled]="time_format == 'time'">Show Time</button>
+          <button class="btn btn-link" (click)="changetimeformat('diff')" [disabled]="time_format == 'diff'">Show Diff</button>
+        </div>
+
+        <h4>Event Manual <span class="badge badge-success" [ngClass]="event_finish == true ? 'visible ' : 'invisible '" >Finished</span> </h4>
+        <div class="clearfix"></div>
+        <div>
+          <div class="manual_link_box" *ngIf="stopped_manually == true && event_finish == false">
+            <span>Resume from</span>
+            <button class="btn btn-link" (click)="resume_fetching(event_current_step)">Current Data</button>
+            <button class="btn btn-link" (click)="resume_fetching(event_last_fetched)">Last Fetched</button>
+          </div>
+          <div class="float-left">
+            <strong>Fetching Status:</strong>
+            <span class="badge badge-success" *ngIf="alive == true" >Active</span>
+            <span class="badge badge-warning" *ngIf="alive == false">Paused</span>
+          </div>
+          <div class="space"></div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4">
+      <button type="button" class="btn btn-danger btn-sm btn-block" (click)="delete_previous()">Delete All previous data</button>
+      <div class="space"></div>
+      <div *ngFor="let athlet of athlet_manual; let i = index">
+        <div class="athlet_data">
+       {{athlet.first_name}} {{athlet.sur_name}}
+        <button type="button" class="btn btn-link btn-sm" (click)="finish_step(athlet.code_identifier, 'line', i)"  [disabled]="athlet.corridor_done == false || athlet.line_done == true" >Finish</button>
+        <button type="button" class="btn btn-link btn-sm" (click)="finish_step(athlet.code_identifier, 'corridor', i)" [disabled]="athlet.corridor_done == true">Corridor</button>
+      </div>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div class="table-responsive">
+        <table class="table table-striped athlets" *ngIf="athlet_result.length!=0">
+          <thead>
+          <tr>
+            <th width="3px" class="highlighted_td_all">&nbsp;</th>
+            <th width="24.5%">Full Name</th>
+            <th width="10%">Start #</th>
+            <th width="15%">Corridor #</th>
+            <th width="25%">Corridor</th>
+            <th width="25%">Finish</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let athlet of athlet_result" >
+            <td><div [ngClass]="athlet.current == true ? 'highlighted_div' : ''"></div></td>
+            <td>{{athlet.first_name}} {{athlet.sur_name}}</td>
+            <td>{{athlet.start_number}}</td>
+            <td>{{athlet.corridor_step}}</td>
+            <td>{{time_format == 'time' ? athlet.corridor : athlet.corridor_diff}}</td>
+            <td>{{time_format == 'time' ? athlet.line : athlet.line_diff}}</td>
+          </tr>
+          </tbody>
+
+
+        </table>
+        <div class="no_data_found" *ngIf="athlet_result.length==0" >
+          <strong>Waiting for someone to finish corridor ...</strong>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+

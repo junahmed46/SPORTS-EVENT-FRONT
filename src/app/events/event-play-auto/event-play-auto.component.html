@@ -1,0 +1,62 @@
+<main class="col-sm-12 ml-sm-auto col-md-12 pt-3" role="main">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="main_heading">
+        <h4>Event Auto Play <span class="badge badge-success" [ngClass]="event_finish == true ? 'visible ' : 'invisible '" >Finished</span> </h4>
+      </div>
+      <hr>
+      <div><strong>Fetching Status:</strong>
+        <span class="badge badge-success" *ngIf="alive == true" >Active</span>
+        <span class="badge badge-warning" *ngIf="alive == false">Paused</span>
+      </div>
+      <hr>
+      <button class="btn btn-primary" (click)="previous_step()" [disabled]="event_current_step <= 1">Previous Step</button>
+      <button class="btn btn-primary" (click)="next_step()" [disabled]="event_last_fetched <= event_current_step">Next Step</button>
+
+      <div *ngIf="stopped_manually == true && event_finish == false">
+        <hr>
+        <strong>Resume from</strong>
+        <div class="clear"></div>
+        <button class="btn btn-secondary" (click)="resume_fetching(event_current_step)">Current Data</button>
+        <button class="btn btn-secondary" (click)="resume_fetching(event_last_fetched)">Last Fetched</button>
+      </div>
+      <hr>
+      <strong>Time Format</strong>
+      <div class="clear"></div>
+      <button class="btn btn-secondary" (click)="changetimeformat('time')" [disabled]="time_format == 'time'">Show Time</button>
+      <button class="btn btn-secondary" (click)="changetimeformat('diff')" [disabled]="time_format == 'diff'">Show Diff</button>
+    </div>
+    <div class="col-sm-9">
+      <div class="table-responsive">
+        <table class="table table-striped athlets" *ngIf="athlet_result.length!=0">
+          <thead>
+          <tr>
+            <th width="3px" class="highlighted_td_all">&nbsp;</th>
+            <th width="24.5%">Full Name</th>
+            <th width="10%">Start #</th>
+            <th width="15%">Corridor #</th>
+            <th width="25%">Corridor</th>
+            <th width="25%">Finish</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let athlet of athlet_result" >
+            <td><div [ngClass]="athlet.current == true ? 'highlighted_div' : ''"></div></td>
+            <td>{{athlet.first_name}} {{athlet.sur_name}}</td>
+            <td>{{athlet.start_number}}</td>
+            <td>{{athlet.corridor_step}}</td>
+            <td>{{time_format == 'time' ? athlet.corridor : athlet.corridor_diff}}</td>
+            <td>{{time_format == 'time' ? athlet.line : athlet.line_diff}}</td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="no_data_found" *ngIf="athlet_result.length==0" >
+          Waiting for someone to finish corridor ...
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+

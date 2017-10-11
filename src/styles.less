@@ -1,0 +1,59 @@
+@top_menu_space: 85px; // Menu is fixed so body need to go down
+@heading_color: #666; // Main color for all the headings
+@default_space_height: 20px; // in case height needed between dev
+@minimum_container_height: 77vh; // main contianer width to cover whole pahe
+
+
+.top_menu_space {
+  height: @top_menu_space;
+}
+
+.min-container {
+  min-height: @minimum_container_height;
+}
+
+.main_heading h1 {
+  color:@heading_color;
+}
+.main_heading h4 {
+  font-size: 1.7rem;
+  color:@heading_color;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+.highlighted_td_all {
+  padding:0.05rem !important;
+
+}
+
+.highlighted_div {
+  padding: 0.3rem !important;
+  background: #82b74b;
+  border-right: 2px solid #405d27;
+  width: 3px;
+  float: left;
+  height: 22px;
+}
+
+.athlets td, .athlets th {
+  padding: .50rem !important; // little less padding to TD and TH
+}
+
+.space {
+  clear:both;
+  height:@default_space_height;
+  width: 100%;
+}
+.no_data_found {
+  padding: 15px 10px;
+  margin: 20px 0px;
+  font-weight: bold;
+  border-left: 2px solid #f00;
+}

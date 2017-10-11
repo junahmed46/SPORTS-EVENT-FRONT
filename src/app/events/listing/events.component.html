@@ -1,0 +1,31 @@
+<main [ngClass]="'col-sm-12 ml-sm-auto col-md-12 pt-3'" role="main">
+  <div [ngClass]="'main_heading'" >
+    <button type="button" (click)="this.add_event()" [ngClass]="'btn btn-primary float-right'">Add Sport Event</button>
+    <h1>Event Listing</h1>
+    <div *ngFor="let alert of alerts">
+      <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}</alert>
+    </div>
+  </div>
+  <div [ngClass]="'table-responsive'">
+    <table [ngClass]="'table table-striped'"  *ngIf="events.length!=0">
+        <thead>
+        <tr>
+          <th width="40%">ID</th>
+          <th width="40%">Date</th>
+          <th width="20%">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let event of events" ng-init = "i=1">
+
+          <td>ID {{event.id}}</td>
+          <td>{{event.event_start}}</td>
+          <td><a routerLink="/event/detail/{{event.id}}" [ngClass]="'btn btn-success'" >Enter</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="events.length==0" [ngClass]="'no_data_found'">
+      No Event found
+    </div>
+  </div>
+</main>
