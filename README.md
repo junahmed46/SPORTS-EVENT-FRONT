@@ -39,6 +39,8 @@ http://docs.sporteventmooncasecade.apiary.io/#
 
 1. In order to run Auto Play API server must run `php artisan queue:listen`
 
+[Laravel Queues](https://laravel.com/docs/5.4/queues)
+
 ## Running unit tests
 Right Now there is no test done but will be added if required.
 
