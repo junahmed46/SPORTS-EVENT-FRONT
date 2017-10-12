@@ -52,11 +52,10 @@
           <thead>
           <tr>
             <th width="3px" class="highlighted_td_all">&nbsp;</th>
-            <th width="24.5%">Full Name</th>
+            <th width="29.5%">Full Name</th>
             <th width="10%">Start #</th>
-            <th width="15%">Corridor #</th>
-            <th width="25%">Corridor</th>
-            <th width="25%">Finish</th>
+            <th width="35%">Corridor</th>
+            <th width="35%">Finish</th>
           </tr>
           </thead>
           <tbody>
@@ -64,8 +63,7 @@
             <td><div [ngClass]="athlet.current == true ? 'highlighted_div' : ''"></div></td>
             <td>{{athlet.first_name}} {{athlet.sur_name}}</td>
             <td>{{athlet.start_number}}</td>
-            <td>{{athlet.corridor_step}}</td>
-            <td>{{time_format == 'time' ? athlet.corridor : athlet.corridor_diff}}</td>
+            <td>{{time_format == 'time' ? athlet.corridor : athlet.corridor_diff}} <span class="badge badge-success">{{athlet.corridor_step}}</span></td>
             <td>{{time_format == 'time' ? athlet.line : athlet.line_diff}}</td>
           </tr>
           </tbody>
@@ -73,7 +71,8 @@
 
         </table>
         <div class="no_data_found" *ngIf="athlet_result.length==0" >
-          <strong>Waiting for someone to finish corridor ...</strong>
+          Waiting for someone to finish corridor ...
+            <div *ngIf="alive==true" class="red">If records are not coming something can be wrong with php artisan queue listen</div>
         </div>
       </div>
     </div>
