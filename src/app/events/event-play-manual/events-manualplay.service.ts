@@ -12,7 +12,8 @@ export class EventsManualPlayService {
   }
 
   fetch_data(event_id, event_current_step): Observable<any>  {
-    return this.http.get(environment.api_url + 'athlete-progress/data/' + event_id + '/' + event_current_step, {});
+    return this.http.get(environment.api_url + 'athlete-progress/data/' + event_id + '/' + event_current_step, {})
+      .catch(error => this.handleError(error));;
   }
 
   finish_step(code_identifier, finish_type): Observable<any>  {
@@ -25,16 +26,23 @@ export class EventsManualPlayService {
       chip_code: code_identifier,
       finish_type: finish_type,
       clock_time: clock_time
-    });
+    })
+      .catch(error => this.handleError(error.json()));
   }
 
   delete_previous(event_id): Observable<any>  {
-    return this.http.delete(environment.api_url + 'destroy-dummy-data/' + event_id , {});
+    return this.http.delete(environment.api_url + 'destroy-dummy-data/' + event_id , {})
+      .catch(error => this.handleError(error.json()));
   }
 
 
   get_athlets(event_id): Observable<any>  {
-    return this.http.get(environment.api_url + 'sport-event-athletes/' + event_id , {});
+    return this.http.get(environment.api_url + 'sport-event-athletes/' + event_id , {})
+      .catch(error => this.handleError(error.json()));
+  }
+
+  handleError(error: any) {
+    return Observable.throw(error.json());
   }
 }
 

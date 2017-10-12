@@ -16,16 +16,17 @@ export class EventsAutoPlayService {
 
 
   setup_game (event_id): Observable<any> {
-    return this.http.get(environment.api_url + 'dummy-auto-play/' + event_id, {});
+    return this.http.get(environment.api_url + 'dummy-auto-play/' + event_id, {})
+      .catch(error => this.handleError(error.json()));
   }
 
-
-
-
-
-
   fetch_data(event_id, event_current_step): Observable<any>  {
-    return this.http.get(environment.api_url + 'athlete-progress/data/' + event_id + '/' + event_current_step, {});
+    return this.http.get(environment.api_url + 'athlete-progress/data/' + event_id + '/' + event_current_step, {})
+    .catch(error => this.handleError(error.json()));
+  }
+
+  handleError(error: any) {
+    return Observable.throw(error.json());
   }
 
 }
