@@ -6,7 +6,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-### APIs calling 
+#### APIs calling 
 
 By default development will listen to `http://sportevent.local/`. 
 
@@ -17,7 +17,7 @@ Prefix api/v1 is also added to all ports.
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-### APIs calling 
+#### APIs calling 
 
 By Default production will listen to http://mc-sportevent-api.junaidahmed.online/.
 
@@ -35,8 +35,9 @@ or
 
 http://docs.sporteventmooncasecade.apiary.io/#
 
-## Build
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+## NOTE
+
+1. In order to run Auto Play API server must run `php artisan queue:listen`
 
 ## Running unit tests
 Right Now there is no test done but will be added if required.
