@@ -1,4 +1,4 @@
-#How it will work
+# How it will work
 
 ## Events Page
 From The Event page you can go to detail of any previous event or you can create new one
